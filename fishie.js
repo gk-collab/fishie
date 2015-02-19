@@ -3,10 +3,7 @@ window.onload = function() {
 	var world = {
 	// this will be an object to define the world size later.
 	// the boat object will not move past world.left or world.right
-	
-	// world.size() = getViewportSize()
-	// world.left = 30px
-	// world.right = 30px less than viewport's right dimension
+
 		width: function() {
 			return w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 		},
