@@ -1,5 +1,28 @@
 window.onload = function() {
+	window.onresize = function() {
+		boat.setPosition("50%");
+	};
+	
+	function leftArrowPressed() {
+		boat.move("left", 25);
+	}
 
+	function rightArrowPressed() {
+		boat.move("right", 25);
+	}
+	
+	document.onkeydown = function(evt) {
+		evt = evt || window.event; 
+		switch (evt.keyCode) {
+		case 37:
+		leftArrowPressed();
+		break;
+		case 39:
+		rightArrowPressed();
+		break;
+		}
+	};
+	
 	var world = {
 	// this will be an object to define the world size later.
 	// the boat object will not move past world.left or world.right
@@ -37,50 +60,30 @@ window.onload = function() {
 			}
 		},
 		
-		position: function() {
+		getPosition: function() {
 			// Get the CSS 'left' property of #boat
 			var getLeftProp = getComputedStyle(this.id()).getPropertyValue("left");
 			return parseFloat(getLeftProp);
 		},
 		
+		setPosition: function(newPosition) {
+			this.id().style.left = newPosition;
+		},
+		
 		move: function(lr, increment) {
 				
-				if(lr === "left" && this.position() > world.leftBorder) {
+				if(lr === "left" && this.getPosition() > world.leftBorder) {
 					// If moving to the left, subtract from current value then update it
-					newPosition = this.position() - increment;
-					this.id().style.left = newPosition;
-				} else if (lr === "right" && this.position() <= world.rightBorder()) {
+					newPosition = this.getPosition() - increment;
+					this.setPosition(newPosition);
+				} else if (lr === "right" && this.getPosition() <= world.rightBorder()) {
 					// If moving to the right, add to current value then update it
-					newPosition = this.position() + increment;
-					this.id().style.left = newPosition;
-				} else {
-					// I don't know what happened, boss!
-					// alert("An unexpected error has occurred.");
+					newPosition = this.getPosition() + increment;
+					this.setPosition(newPosition);
 				}
 			
 		}
 	};
 
 	boat.draw();
-		
-	function leftArrowPressed() {
-		boat.move("left", 25);
-	}
-
-	function rightArrowPressed() {
-		boat.move("right", 25);
-	}
-	
-	document.onkeydown = function(evt) {
-		evt = evt || window.event; 
-		switch (evt.keyCode) {
-		case 37:
-		leftArrowPressed();
-		break;
-		case 39:
-		rightArrowPressed();
-		break;
-		}
-	};
-	
 };
