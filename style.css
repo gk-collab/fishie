@@ -1,0 +1,17 @@
+/* 
+http://www.colourlovers.com/palette/92095/Giant_Goldfish 
+http://www.colourlovers.com/palette/1208028/Sky_Fish_II
+*/
+body {
+	background-color: #69D2E7;
+	margin: 0px;
+	padding: 0px;
+}
+
+#water {
+	bottom: 0px;
+	position: absolute;
+	background-color: #4CB8D9;
+	height: 50%;
+	width: 100%;
+}
